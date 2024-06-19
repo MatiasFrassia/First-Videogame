@@ -91,4 +91,4 @@ function loop(){
     contexto.fillText("Score: " + score, 10, contexto.canvas.height - 40);
 }
 
-window.addEventListener("keydown", keyDown)//Cada vez que s epresione cualquier tecla el personaje sube 25px
+window.addEventListener("click", keyDown)//Cada vez que s epresione cualquier tecla el personaje sube 25px
