@@ -5,7 +5,7 @@ let score = 0;
 const FPS = 60;
 const GRAVEDAD = 1.5;
 let personaje = {
-    x:50,
+    x:50, //La X es la esquina superior izquierda del personaje
     y : 150,
     w: 35,
     h:26
@@ -15,6 +15,10 @@ tuberias[0] = {
     x: contexto.canvas.width,
     y: 0
 }
+//VARIABLE AUDIOS
+let punto = new Audio();
+punto.src = "audio/punto.mp3"
+
 //VARIABLE IMAGEN
 let bird = new Image();
 bird.src = "imagenes/bird.png";
@@ -57,12 +61,17 @@ function loop(){
          contexto.drawImage(tuberiaSur, tuberias[i].x, tuberias[i].y + desfasaje);
          tuberias[i].x--;
 
+         if(tuberias[i].y + tuberiaNorte.height < 80){
+            tuberias[i].y = 0;
+         }
+
          if(tuberias[i].x == 100){//Al llegar a 130px del canvas se genera una nueva tuberia
             tuberias.push({
                 x: contexto.canvas.width,
                 y: Math.floor(Math.random()*tuberiaNorte.height) - tuberiaNorte.height
             });
             score++;
+            punto.play();
          }
          //COLISIONES
          if(personaje.x + bird.width >= tuberias[i].x &&
